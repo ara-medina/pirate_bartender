@@ -16,16 +16,18 @@ ingredients = {
     "fruity": ["slice of orange", "dash of cassis", "cherry on top"],
 }
 
-preferences = {}
+clients = {}
 
 
 def userTastesCollector():
+    preferences = {}
     for taste,question in questions.items():
             user_input = input(question)
             if (user_input == 'y') or (user_input == 'yes'): 
                 preferences[taste] = True
             else:
                 preferences[taste] = False
+    return preferences
 
 
 def drinkMaker(userResponses):
@@ -34,9 +36,19 @@ def drinkMaker(userResponses):
             print(random.choice(ingredients[taste]))
 
 
+
+
 if __name__ == '__main__':
-    userTastesCollector()
-    drinkMaker(preferences)
+    client_answer = input("Would you like a drink?")
+    while client_answer in ["y", "yes"]:
+        client_name = input("What is your name?")
+        if clients.has_key(client_name):
+            prefs = clients[client_name]
+        else:    
+            prefs = userTastesCollector()
+            clients[client_name] = prefs
+        drinkMaker(prefs)
+        client_answer = input("Would you like a drink?")
 
 
 
