@@ -1,3 +1,5 @@
+import random
+
 questions = {
     "strong": "Do ye like yer drinks strong?",
     "salty": "Do ye like it with a salty tang?",
@@ -14,14 +16,21 @@ ingredients = {
     "fruity": ["slice of orange", "dash of cassis", "cherry on top"],
 }
 
-user_responses = {}
+preferences = {}
 
-for key,question in questions.items():
+for taste,question in questions.items():
     user_input = input(question)
     if (user_input == 'y') or (user_input == 'yes'): 
-        user_responses[key] = True
+        preferences[taste] = True
     else:
-        user_responses[key] = False
+        preferences[taste] = False
 
-print(user_responses)
+def drinkMaker(userResponses):
+    for taste,ingredient in ingredients.items():
+        if userResponses[taste] == True:
+            print(random.choice(ingredients[taste]))
+
+drinkMaker(preferences)
+
+
 
