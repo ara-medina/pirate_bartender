@@ -18,19 +18,25 @@ ingredients = {
 
 preferences = {}
 
-for taste,question in questions.items():
-    user_input = input(question)
-    if (user_input == 'y') or (user_input == 'yes'): 
-        preferences[taste] = True
-    else:
-        preferences[taste] = False
+
+def userTastesCollector():
+    for taste,question in questions.items():
+            user_input = input(question)
+            if (user_input == 'y') or (user_input == 'yes'): 
+                preferences[taste] = True
+            else:
+                preferences[taste] = False
+
 
 def drinkMaker(userResponses):
     for taste,ingredient in ingredients.items():
         if userResponses[taste] == True:
             print(random.choice(ingredients[taste]))
 
-drinkMaker(preferences)
+
+if __name__ == '__main__':
+    userTastesCollector()
+    drinkMaker(preferences)
 
 
 
