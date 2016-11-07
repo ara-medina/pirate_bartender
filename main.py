@@ -36,13 +36,11 @@ def drinkMaker(userResponses):
             print(random.choice(ingredients[taste]))
 
 
-
-
 if __name__ == '__main__':
     client_answer = input("Would you like a drink?")
     while client_answer in ["y", "yes"]:
         client_name = input("What is your name?")
-        if clients.has_key(client_name):
+        if client_name in clients:
             prefs = clients[client_name]
         else:    
             prefs = userTastesCollector()
